@@ -18,4 +18,9 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.4",
+  networks: {
+    fuji: {
+      url: `https://avalanche-fuji.infura.io/v3/31539a34306f45a192c56fba836b75ea`,
+    }
+  }
 };

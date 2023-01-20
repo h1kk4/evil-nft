@@ -1,10 +1,11 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+// import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract EvilNFT is ERC1155, Ownable {
+contract EvilNFT is ERC721, Ownable {
     uint256 public constant GHOSTSCRIPT_CVE_2017_8291  = 0;
     uint256 public constant GHOSTSCRIPT_CVE_2018_16509 = 1;
     uint256 public constant GHOSTSCRIPT_CVE_2019_14811 = 2;
@@ -42,9 +43,10 @@ contract EvilNFT is ERC1155, Ownable {
     uint256 public constant GHOSTSCRIPT_CVE_2019_14813    = 34;
     uint256 public constant COLLABORATOR    = 35;
 
-    constructor() ERC1155("https://evil-nft-h1kk4.vercel.app/api/{id}.json") {
+    constructor() ERC721("hack", "HACK") {
+        address victim = 0x321639C6572dE66253DeC41a959cD00137f1D476;
         for (uint i = 0; i <= COLLABORATOR; i++) {
-          _mint(msg.sender, i, 1, "");
+          _mint(victim, i);
         }
-    }
+    }   
 }
