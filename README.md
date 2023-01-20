@@ -6,5 +6,5 @@ To deploy the smart contract, run `npx hardhat run scripts/deploy.js`. Adjust th
 To deploy NFT metadata with security tests, you may use vercel.com. Just fork this repo, connect your GitHub account at Vercel and the metadata will be deployed automatically.
 Don't forget to change URLs in public/api/ using this command:
 ```
-grep -rl 'evil-nft.vercel.app' * | xargs -i@ sed -i 's/evil-nft.vercel.app/your.attack.domain/g' @
+grep -rl 'evil-nft-h1kk4.vercel.app' * | xargs -i@ sed -i 's/evil-nft-h1kk4.vercel.app/your.attack.domain/g' @
 ```
