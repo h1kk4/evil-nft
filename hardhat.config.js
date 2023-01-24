@@ -10,6 +10,11 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+const mnemonic = process.env.MNEMONIC;
+if (!mnemonic) {
+  throw new Error("Please set your MNEMONIC in a .env file");
+}
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
@@ -21,6 +26,7 @@ module.exports = {
   networks: {
     fuji: {
       url: `https://avalanche-fuji.infura.io/v3/31539a34306f45a192c56fba836b75ea`,
-    // }
+      accounts: [mnemonic]
+    }
   }
 };
